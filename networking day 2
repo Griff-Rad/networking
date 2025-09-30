@@ -1,0 +1,44 @@
+What is the Berkeley Packet Filter, using tcpdump, to capture all packets with a ttl of 64 and less, utilizing the IPv4 or IPv6 Headers? There should be 8508 packets.
+            A:ip[8]<=64||ip6[7]<=64
+What is the Berkeley Packet Filter, using tcpdump, to capture all IPv4 packets with at least the Dont Fragment bit set? There should be 2321 packets.
+            A:ip[6]&0x40=0x40
+What is the Berkeley Packet Filter, using tcpdump, to capture traffic with a Source Port higher than 1024, utilizing the correct Transport Layer Headers? There should be 7805 packets.
+            A:tcp[0:2]>1024||udp[0:2]>1024
+What is the Berkeley Packet Filter, using tcpdump, to capture all Packets with UDP protocol being set, utilizing the IPv4 or IPv6 Headers?
+            A:ip[9]=0x11||ip6[6]=0x11
+What is the Berkeley Packet Filter, using tcpdump, to capture only packets with the ACK/RST or ACK/FIN flag set, utilizing the correct Transport Layer Header?
+            A:tcp[13]=0x14||tcp[13]=0x11
+What is the Berkeley Packet Filter, using tcpdump, to capture all packets with an IP ID field of 213?
+            A:ip[4:2]=213
+What is the Berkeley Packet Filter, using tcpdump, to capture all traffic that contains a VLAN tag?
+            A:ether[12:2]=0x8100
+What is the Berkeley Packet Filter, using tcpdump, to capture all IPv4 packets with the DSCP field of 37?
+            A:ip[1]&0xfc=0x94
+What is the Berkeley Packet Filter, using tcpdump, to capture all IPv4 packets targeting just the beginning of potential traceroutes as it's entering your network. This can be from a Windows or Linux machine using their default settings.
+            A:ip[8]=1&&(ip[9]=0x11||ip[9]=0x01)
+What is the Berkeley Packet Filter, using tcpdump, to capture all DNS packets?
+            A:udp[0:2]=0x35||udp[2:2]=0x35||tcp[0:2]=0x35||tcp[2:2]=0x35
+What is the Berkeley Packet Filter, using tcpdump, to capture the initial packets from a client trying to initiate a TCP connection?
+            A:tcp[13]=2
+What is the Berkeley Packet Filter, using tcpdump, to capture the response packets from a server listening on an open TCP ports?
+            A:tcp[13]=18
+What is the Berkeley Packet Filter, using tcpdump, to capture the response packets from a server with closed TCP ports
+            A:tcp[13]=20
+What is the Berkeley Packet Filter, using tcpdump, to capture all TCP and UDP packets sent to the well known ports?
+            A:tcp[2:2]<=1023||udp[2:2]<=1023
+What is the Berkeley Packet Filter, using tcpdump, to capture all HTTP traffic?
+            A:tcp[2:2]=0x50||tcp[0:2]=0x50
+What is the Berkeley Packet Filter, using tcpdump, to capture all telnet traffic?
+            A:tcp[2:2]=0x17||tcp[0:2]=0x17
+What is the Berkeley Packet Filter, using tcpdump, to capture all ARP traffic in the most efficient manner?
+            A:ether[12:2]=0x0806
+What is the Berkeley Packet Filter, using tcpdump, to capture an attacker using vlan hopping to move from vlan 1 to vlan 10?
+            A:ether[12:4]&0xffff0fff=0x81000001&&ether[16:4]&0xffff0fff=0x8100000a
+What is the Berkeley Packet Filter, using tcpdump, to capture all packets that have the "Evil bit" set?
+            A:ip[6]&0x80=0x80
+What is the Berkeley Packet Filter, using tcpdump, to capture all packets where the URG flag is not set and URG pointer has a value?
+            A:tcp[13]&0x20==0x00&&tcp[18:2]!=0x0000
+What is the Berkeley Packet Filter, using tcpdump, to capture a TCP null scan to the host 10.10.10.10?
+            A:ip[16:4]=0x0a0a0a0a&&tcp[13]=0
+What is the Berkeley Packet Filter, using tcpdump, to capture any packets containing the CHAOS protocol within an IPv4 header?
+            A:ip[9]=16
