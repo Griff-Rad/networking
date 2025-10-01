@@ -1,1 +1,4 @@
 dariana.johns : dariana.johns! 
+netX_student##
+net2_student05
+curl -o /home/student/float-ip.txt http://10.10.0.62/metadata/float-ip
