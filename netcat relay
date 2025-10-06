@@ -1,0 +1,20 @@
+Task 1
+
+T1
+Hostname: INTERNET_HOST
+External IP: 10.50.XXX.XXX (ALREADY PROVIDED)
+Internal IP: 10.10.0.40 (ALREADY PROVIDED, accessed via FLOAT IP)
+Credentials: student:password
+Action: Transfer files between hosts via Netcat
+
+T2
+Hostname: BLUE_HOST-4
+IP: 172.16.82.115
+Credentials: No Access
+Action: Transfer files from this host using Netcat
+
+RELAY
+Hostname: BLUE_INT_DMZ_HOST-1
+IP: 172.16.40.10
+Credentials: student:password
+Action: Transfer file data between hosts via Netcat
