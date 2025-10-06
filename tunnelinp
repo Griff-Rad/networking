@@ -1,0 +1,14 @@
+T3
+Hostname: Atropia
+IP: 10.50.11.222 (Provided by Mission Command)
+Credentials: netY_studentX:passwordX (Y = Network Class, X = Student Number)
+Known Ports: 22 (ssh)
+Action: Establish tunneling
+
+T4
+Hostname: Pineland
+IP: 10.50.200.173 (Provided by Mission Command)
+Credentials: netY_studentX:passwordX
+Known Ports: 23 (telnet)
+Type: Compromised Donovian System
+Action: Establish tunneling
