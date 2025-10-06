@@ -1,0 +1,21 @@
+Target Section:
+
+T1
+Hostname: INTERNET_HOST
+IP: 10.10.0.40
+OS: Linux
+Credentials: PROVIDED CREDENTIALS
+Last Known SSH Port: 22
+PSP: none
+Malware: none
+Action: Send a Datagram Socket Message to this host
+
+T2
+Hostname: BLUE_DMZ_Host-1
+IP: 172.16.1.15
+OS: unknown
+Credentials: unknown
+Last Known SSH Port: unknown
+PSP: unknown
+Malware: unknown
+Action: Send a Stream Socket Message to this host 
