@@ -1,0 +1,26 @@
+10.50.93.47-22,80-Sterling
+10.1.2.200-21,23,80,8976-Lana
+10.2.5.20-21,22,80- Cheryl
+10.3.9.39-21,23,80,3597-Malory
+
+
+ssh Sterling@10.50.93.47 -D 9050
+ssh Sterlong@10.50.93.47 -L 23420:10.1.2.200:23
+
+Lana>ssh Sterling@10.1.2.130 -R 23421:localhost:8976
+BIH>ssh Sterling@10.50.93.47 -L :23422:localhost:23421
+
+scp -P 23422 Lana@localhost:/usr/share/cctc/Lana-share.png .
+ssh Lana@localhost -p 23422 -D 9050 
+BIH>ssh Lana@localhost -p 23422 -L 23423:10.2.5.20:22
+scp -P 23423 Cheryl@localhost:/usr/share/cctc/Cheryl-share.png .
+
+Bih> ssh Cheryl@localhost -p23423 -D 9050
+ssh -p 23423 Cheryl@localhost -L 23424:10.3.9.39:23
+telnet localhost 23424
+
+ssh Cheryl@10.3.9.33 -R 23425:localhost:3597
+ssh Cheryl@localhost -p 23423 -L 23426:localhost:23425
+ssh Malory@localhost -p 23426 -D 9050
+
+
