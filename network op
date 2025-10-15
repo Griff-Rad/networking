@@ -1,0 +1,72 @@
+ip[8]<=64||ip6[7]<=64 to capture all packets with ttl of 64 or less, and utilizing iPv4 and iPv6
+ip[6}&64=64 to capture all ipv4 packets with at least the Don't Fragment Bit set
+tcp[0:2]>1024||udp[0:2]>1024 to capture traffic with source port higher than 1024 utilizing transport layer headers
+ip[9]=0x11||ip6[6]=0x11 to capture all packets with UDP protocol being set, utilizing the iPv4 or iPv6 headers
+tcp[13]=0x14||tcp[13]=0x11 to capture only packets with the ACK/RST or ACK/FIN flag set
+ip[4:2]=213 to capture all packets with an IP ID field of 213
+ether[12:2]=0x8100 to capture all traffic that contains a VLAN tag
+ip[1]>>2=37 to capture all iPv4 packets with the DSCP field of 37
+ip[8]=1&&(ip[9]=0x11||ip[9]=0x01) to capture all ipv4 packets targeting just the beginning of potential traceroutes 
+tcp[0:2]=53||tcp[2:2]=53||udp[0:2]=53||udp[2:2]=53 to capture all dns traffic
+tcp[13]=0x02 to capture the initial packets from a client trying to initiate a TCP connection
+tcp[13]=0x12 to capture the response packets from a server listening on an open TCP port
+tcp[13]=20 to capture the response packets from a server with closed TCP ports
+tcp[0:2]=80||tcp[2:2]=80 to capture all http traffic
+tcp[2:2]<=1023||udp[2:2]<=1023 to capture all tcp and udp packets sent to the well known ports
+ether[12:4]&0xffff0fff=0x81000001&&ether[16:4]&0xffff0fff=0x8100000a to capture an attacker using vlan hopping to move from vlan 1 to vlan 10
+ip[6]&0x80=0x80 to capture all packets that have the "Evil Bit"
+tcp[13]&0x20=0x00&&tcp[18:2]!=0x0000 to capture all packets where the URG flag is not set and URG pointer has a value
+ip[16:4]=0x0a0a0a0a&&tcp[13]=0 to capture a TCP null scan to the host 10.10.10.10
+ip[9]=16 to capture any packets containing the CHAOS protocol within an iPv4 header
+ip[6:2] & 0x1fff != 0 or ip[6] & 0x20 != 0 to determine number of all fragmented packets 
+src host 10.0.0.104 and tcp[tcpflags] & (tcp-syn | tcp-ack) == (tcp-syn | tcp-ack) An attacker is targeting the host 10.0.0.104 with either a TCP full or half open scan. Based off the pcap, how many ports are open?
+ip[6] & 0x40 != 0 and tcp[tcpflags] == (tcp-rst | tcp-fin) How many packets have the DF flag set and has ONLY the RST and FIN TCP Flags set?
+ip dst 10.0.0.103 and ip[1] & 0xfc == 0x68 to determine how many packets with a DSCP of 26 being sent to the host 10.0.0.103
+!BBHHHBBH4s4s is the proper format to pro-grammatically pack the IPv4 RAW header
+UTF-8 is the default (and most common) encoding used when converting data to be sent over the network
+What type of header does TCP build to perform the checksum function? Pseudo header 
+
+DAY 3:
+net2_student04          net{2}_student4:password4
+
+ssh -X net2_student4@10.50.189.76 -p 22 to get into student red-internet-host
+
+curl -o /home/student/float-ip.txt http://10.10.0.62/metadata/float-ip
+
+wget -r <ip address> will pull files from an ip address
+wget -r http://<ip>  
+eog <ip address/file> to open that file
+https://cted.cybbh.io/tech-college/cttsb/cctc/net/Net/Modules/06_Network_Reconnaissance/fg.html#6531-nmap-port-states for all nmap options
+nc <ip address> <port> for banner grabbing nc -u ip port
+which <executable>
+
+waybackmachine
+bgp.he.net for ipv6 prefixes 
+https://git.cybbh.space/net/public/builds/artifacts/master/file/modules/networking/slides-v4/07_discovery.html?job=generate_adoc-slides <day 3 slides>!!!!
+
+
+DAY 5:
+https://cted.cybbh.io/tech-college/cttsb/cctc/net/Net/Modules/07_File_Transfer_and_Redirection/fg.html#7152-demonstration-of-scp tunnels and examples of scp
+
+day 6: (LOCAL HOST = 127.0.0.1)!!!!!!!!!
+ssh student@172.16.1.15 -L 2222:172.16.40.10:22 check
+ssh student@localhost -p 2222 -L 3333:172.16.82.106:22 this tunnel authenticates into the first tunnel's target ip referred to as "localhost"
+ssh student@localhost -p 3333 -L 4444:<next target>  (to keep tunneling/pivoting)
+
+ssh student@localhost -p 3333 -D 9050  (or to scan the network)
+proxychains ./scan.sh
+
+remote port forward
+telnet into dmz because ssh is firewalled
+ssh from dmz host back to self with -R RHP:target:22
+
+ssh student@<attack platform> -L 2223:<3rd plat>:23
+telnet localhost 2223
+
+ssh net2_student15
+find / -name <enter>* 2> /dev/null
+
+ip addr to find "inside ip"
+
+sudo p0f -i eth0 -o p0f.txt
+p0f -r <pcap name>
